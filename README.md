@@ -34,6 +34,38 @@ a simple chatbot demo.
 
 ---
 
+## Quick Start
+
+```bash
+git clone <repository-url>
+cd careline-healthcare-voice-agent
+
+python3.11 -m venv .venv
+source .venv/bin/activate
+pip install -e ".[dev]"
+
+cp .env.example .env
+
+ollama pull qwen3:4b-instruct
+
+make db-up
+make db-migrate
+make db-seed
+make run
+```
+
+Run the development checks:
+
+```bash
+make check
+```
+
+Run the complete evaluation suite:
+
+```bash
+make eval
+```
+
 ## Safety Boundary
 
 CareLine is intentionally restricted to administrative healthcare tasks.
@@ -394,7 +426,11 @@ python3.11 -m venv .venv
 source .venv/bin/activate
 ```
 
-Install Python dependencies using the project configuration.
+Install the project and development dependencies:
+
+```bash
+pip install -e ".[dev]"
+```
 
 ---
 
@@ -533,7 +569,7 @@ Current regression suite:
 
 ---
 
-# Evaluation
+## Evaluation
 
 Evaluation is treated as a first-class part of the project.
 
@@ -1014,20 +1050,3 @@ CareLine is a software engineering and AI portfolio project.
 It uses synthetic healthcare data and must not be used for diagnosis,
 clinical treatment, medication decisions, or emergency medical guidance.
 
-````
-
-After pasting it:
-
-**Terminal — run from:** `~/careline-healthcare-voice-agent`
-
-```bash
-make check
-````
-
-Then:
-
-```bash
-git status --short
-```
-
-Paste those two outputs and we’ll do the final packaging audit.
