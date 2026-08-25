@@ -37,7 +37,7 @@ a simple chatbot demo.
 ## Quick Start
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/arzamabid/careline-healthcare-voice-agent.git
 cd careline-healthcare-voice-agent
 
 python3.11 -m venv .venv
