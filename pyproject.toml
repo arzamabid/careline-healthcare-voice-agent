@@ -1,0 +1,72 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+
+[project]
+name = "careline-healthcare-voice-agent"
+version = "0.1.0"
+description = "Local-first healthcare patient-services voice agent using synthetic data."
+readme = "README.md"
+requires-python = ">=3.11"
+
+dependencies = [
+    "fastapi",
+    "uvicorn[standard]",
+    "pydantic>=2",
+    "pydantic-settings",
+    "PyYAML>=6.0",
+    "SQLAlchemy>=2.0",
+    "psycopg[binary]>=3.2",
+    "alembic>=1.13",
+    "langgraph",
+    "langchain",
+    "langchain-ollama",
+    "faster-whisper",
+    "kokoro",
+    "soundfile",
+    "livekit-plugins-silero",
+    "livekit-agents",
+]
+
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "pytest-asyncio",
+    "httpx",
+    "ruff",
+]
+
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+markers = [
+    "integration: marks tests as integration tests",
+]
+
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+
+[tool.ruff.lint]
+ignore = ["B008"]
+
+
+[tool.setuptools.packages.find]
+include = [
+    "agent*",
+    "apps*",
+    "db*",
+    "observability*",
+    "evaluations*",
+]
+exclude = [
+    "data*",
+    "evals*",
+    "docs*",
+    "tests*",
+]

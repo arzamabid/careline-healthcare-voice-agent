@@ -1,0 +1,35 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: careline-postgres
+    restart: unless-stopped
+
+    environment:
+      POSTGRES_DB: careline
+      POSTGRES_USER: careline
+      POSTGRES_PASSWORD: careline
+
+    ports:
+      - "5433:5432"
+
+    volumes:
+      - careline_postgres_data:/var/lib/postgresql/data
+
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U careline -d careline"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  livekit:
+    image: livekit/livekit-server:latest
+    command: --config /etc/livekit.yaml
+    volumes:
+      - ./livekit.yaml:/etc/livekit.yaml
+    ports:
+      - "7880:7880"
+      - "7881:7881"
+      - "50000-50100:50000-50100/udp"
+
+volumes:
+  careline_postgres_data:

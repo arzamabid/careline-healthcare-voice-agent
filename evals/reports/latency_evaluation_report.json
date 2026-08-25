@@ -1,0 +1,107 @@
+{
+  "evaluation_type": "latency",
+  "environment": "local",
+  "benchmark_type": "synthetic-steady-state",
+  "benchmark_text": "What are North Clinic's opening hours?",
+  "warmup_runs": 2,
+  "measured_runs": 5,
+  "stt_model": "faster-whisper-base.en",
+  "tts_model": "kokoro",
+  "measurements": {
+    "stt": {
+      "runs": 5,
+      "mean_ms": 580.98,
+      "median_ms": 580.19,
+      "p95_ms": 591.85,
+      "min_ms": 567.02,
+      "max_ms": 591.85
+    },
+    "deterministic_faq_graph": {
+      "runs": 5,
+      "mean_ms": 8.77,
+      "median_ms": 8.94,
+      "p95_ms": 9.75,
+      "min_ms": 7.43,
+      "max_ms": 9.75
+    },
+    "llm_graph_text_turn": {
+      "runs": 5,
+      "mean_ms": 920.49,
+      "median_ms": 533.38,
+      "p95_ms": 2559.58,
+      "min_ms": 474.75,
+      "max_ms": 2559.58
+    },
+    "tts": {
+      "runs": 5,
+      "mean_ms": 1877.28,
+      "median_ms": 1927.86,
+      "p95_ms": 1970.12,
+      "min_ms": 1689.54,
+      "max_ms": 1970.12
+    },
+    "end_to_end": {
+      "runs": 5,
+      "mean_ms": 2631.7,
+      "median_ms": 2689.7,
+      "p95_ms": 2750.15,
+      "min_ms": 2504.57,
+      "max_ms": 2750.15
+    }
+  },
+  "notes": [
+    "Warm-up runs are excluded from measured results.",
+    "Input speech is generated once with local Kokoro before timing.",
+    "End-to-end timing measures STT -> LangGraph -> TTS.",
+    "These are local synthetic steady-state measurements, not telephony network latency."
+  ],
+  "sample_transcript": "What are North Clinic's opening hours?",
+  "sample_response": "North Clinic is open Sunday-Thursday 08:00-17:00. Is there anything else I can help you with?",
+  "end_to_end_runs": [
+    {
+      "run": 1,
+      "total_ms": 2750.15,
+      "stt_ms": 678.04,
+      "graph_ms": 7.72,
+      "tts_ms": 2064.35,
+      "transcript": "What are North Clinic's opening hours?",
+      "response_text": "North Clinic is open Sunday-Thursday 08:00-17:00. Is there anything else I can help you with?"
+    },
+    {
+      "run": 2,
+      "total_ms": 2696.93,
+      "stt_ms": 649.47,
+      "graph_ms": 7.13,
+      "tts_ms": 2040.3,
+      "transcript": "What are North Clinic's opening hours?",
+      "response_text": "North Clinic is open Sunday-Thursday 08:00-17:00. Is there anything else I can help you with?"
+    },
+    {
+      "run": 3,
+      "total_ms": 2689.7,
+      "stt_ms": 694.15,
+      "graph_ms": 7.38,
+      "tts_ms": 1988.13,
+      "transcript": "What are North Clinic's opening hours?",
+      "response_text": "North Clinic is open Sunday-Thursday 08:00-17:00. Is there anything else I can help you with?"
+    },
+    {
+      "run": 4,
+      "total_ms": 2504.57,
+      "stt_ms": 575.88,
+      "graph_ms": 7.76,
+      "tts_ms": 1920.89,
+      "transcript": "What are North Clinic's opening hours?",
+      "response_text": "North Clinic is open Sunday-Thursday 08:00-17:00. Is there anything else I can help you with?"
+    },
+    {
+      "run": 5,
+      "total_ms": 2517.16,
+      "stt_ms": 603.16,
+      "graph_ms": 9.27,
+      "tts_ms": 1904.69,
+      "transcript": "What are North Clinic's opening hours?",
+      "response_text": "North Clinic is open Sunday-Thursday 08:00-17:00. Is there anything else I can help you with?"
+    }
+  ]
+}

@@ -1,0 +1,103 @@
+version: "1.0"
+
+sops:
+  - id: SOP-01
+    name: Identity
+    description: >
+      Before showing or changing patient-specific data,
+      verify at least two synthetic identifiers.
+    rules:
+      minimum_identifiers: 2
+      maximum_failed_attempts: 3
+      patient_data_requires_verification: true
+
+  - id: SOP-02
+    name: Consent
+    description: >
+      State that the caller is interacting with an AI voice assistant
+      and that the demonstration uses synthetic data.
+    rules:
+      identify_as_ai: true
+      mention_synthetic_data: true
+
+  - id: SOP-03
+    name: Appointments
+    description: >
+      Never finalize booking, rescheduling, or cancellation without
+      reading back the proposed action and receiving explicit confirmation.
+    rules:
+      explicit_confirmation_required: true
+      confirmation_required_immediately_before_write: true
+      require_tool_success_before_claiming_success: true
+
+  - id: SOP-04
+    name: Emergencies
+    description: >
+      If the caller mentions severe or emergency symptoms,
+      stop the normal workflow and route to emergency services
+      or human clinical staff. Do not diagnose.
+    rules:
+      stop_normal_workflow: true
+      escalation_required: true
+      diagnosis_allowed: false
+
+  - id: SOP-05
+    name: Clinical Advice
+    description: >
+      Do not provide diagnosis, treatment recommendations,
+      medication dosing, or clinical interpretation.
+    rules:
+      diagnosis_allowed: false
+      treatment_recommendation_allowed: false
+      medication_dosing_allowed: false
+      clinical_interpretation_allowed: false
+      escalation_required: true
+
+  - id: SOP-06
+    name: Knowledge Answers
+    description: >
+      Answer clinic and policy questions only using approved content.
+      If verified information is unavailable, say so and offer escalation.
+    rules:
+      approved_sources_only: true
+      fabricate_missing_information: false
+      offer_escalation_if_unknown: true
+
+  - id: SOP-07
+    name: Privacy
+    description: >
+      Do not repeat full synthetic identifiers unnecessarily.
+      Redact sensitive fields from logs.
+    rules:
+      minimize_identifier_repetition: true
+      redact_sensitive_logs: true
+
+  - id: SOP-08
+    name: Interruptions
+    description: >
+      If the caller interrupts the agent, stop speaking promptly,
+      preserve workflow state, process the new utterance,
+      and resume appropriately.
+    rules:
+      cancel_stale_tts: true
+      preserve_workflow_state: true
+
+  - id: SOP-09
+    name: Ambiguity
+    description: >
+      After two failed understanding attempts for the same field,
+      rephrase once. If understanding continues to fail, escalate.
+    rules:
+      clarification_attempts_before_rephrase: 2
+      rephrase_attempts: 1
+      escalate_after_continued_failure: true
+
+  - id: SOP-10
+    name: Closing
+    description: >
+      Before ending the call, summarize completed actions,
+      unresolved items, and any escalation reference.
+    rules:
+      summarize_completed_actions: true
+      summarize_unresolved_items: true
+      include_escalation_reference: true
