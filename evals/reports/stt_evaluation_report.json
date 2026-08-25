@@ -123,7 +123,7 @@
     {
       "id": "STT-010",
       "reference": "No thank you, that's all.",
-      "hypothesis": "No, thank you. That's all.",
+      "hypothesis": "No thank you, that's all.",
       "normalized_reference": "no thank you that s all",
       "normalized_hypothesis": "no thank you that s all",
       "errors": 0,
