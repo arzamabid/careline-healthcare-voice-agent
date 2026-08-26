@@ -10,6 +10,7 @@ deterministic and avoiding paid cloud AI services.
 > It is not a diagnostic or clinical decision-support system.
 
 ---
+<img width="1672" height="941" alt="CareLine — Healthcare Voice Agent" src="https://github.com/user-attachments/assets/ed5b435b-3744-4d92-9f21-94b928eb05ad" />
 
 ## Overview
 
